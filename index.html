@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Slider</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+	
+		<div class="container">
+		
+			<img class="slides" src="robotics1.jpg">
+			<img class="slides" src="ComputerEng1.jpg">
+			<img class="slides" src="robotics2.jpg">
+			<img class="slides" src="ComputerEng2.jpeg">
+			<img class="slides" src="robotics3.jpg">
+			
+			<div class="center">
+				<div class="left" onclick="plusDivs(-1)">&#10094;</div>
+				
+				<span class="badge white" onclick="currentDiv(1)"></span>
+				<span class="badge white" onclick="currentDiv(2)"></span>
+				<span class="badge white" onclick="currentDiv(3)"></span>
+				<span class="badge white" onclick="currentDiv(4)"></span>
+				<span class="badge white" onclick="currentDiv(5)"></span>
+				
+				<div class="right" onclick="plusDivs(1)">&#10095;</div>
+			</div>
+			
+		</div>
+
+		<script>
+			var slideIndex = 1;
+			showDivs(slideIndex);
+			
+			slideIndex = 0;
+			carousel();
+
+			function carousel() {
+				var i;
+				var x = document.getElementsByClassName("slides");
+				var dots = document.getElementsByClassName("badge");
+				
+				for (i = 0; i < x.length; i++) {
+					x[i].style.display = "none";
+					dots[i].className = dots[i].className.replace(" white", "");
+				}
+				
+				for (i = 0; i < dots.length; i++) {
+					dots[i].className = dots[i].className.replace(" white", "");
+				}
+				slideIndex++;
+				
+				if (slideIndex > x.length){
+					slideIndex = 1
+				}
+				
+				x[slideIndex-1].style.display = "block";
+				dots[slideIndex-1].className += " white";
+				setTimeout(carousel, 5000); // Change image every 2 seconds
+			}
+
+			function plusDivs(n) {
+				showDivs(slideIndex += n);
+				}
+
+			function currentDiv(n) {
+				showDivs(slideIndex = n);
+				}
+
+			function showDivs(n) {
+				var i;
+				var x = document.getElementsByClassName("slides");
+				var dots = document.getElementsByClassName("badge");
+				
+				if (n > x.length){
+					slideIndex = 1;
+				}
+				
+				if (n < 1){
+					slideIndex = x.length;
+				}
+				
+				for (i = 0; i < x.length; i++) {
+					x[i].style.display = "none";  
+				}
+				
+				for (i = 0; i < dots.length; i++) {
+					dots[i].className = dots[i].className.replace(" white", "");
+				}
+				
+				x[slideIndex-1].style.display = "block";  
+				dots[slideIndex-1].className += " white";
+			}
+			
+		</script>
+	</body>
+</html> 
